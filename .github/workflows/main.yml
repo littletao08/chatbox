@@ -42,4 +42,4 @@ jobs:
       uses: actions/upload-artifact@v3  # 更新为 v3 版本
       with:
         name: package-artifacts
-        path: ./dist  # 根据你的项目结构调整路径
+        path: ./release/build  # 根据你的项目结构调整路径
