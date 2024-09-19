@@ -1,0 +1,41 @@
+name: Build and Package Application
+
+on:
+  push:
+    branches:
+      - main  # 可以根据需要调整分支名称
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # 使用最新的 Ubuntu 环境
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'  # 设置 Node.js 版本
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Start application in development mode
+      run: npm run dev &
+      # 注意：在 GitHub Actions 中，这一步会在后台运行
+
+    - name: Wait for the application to start
+      run: sleep 10  # 等待 10 秒，确保应用程序启动
+
+    - name: Build the application
+      run: npm run package
+
+    - name: Build for all platforms
+      run: npm run package:all
+
+    - name: Upload Package Artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: package-artifacts
+        path: ./dist  # 根据你的项目结构调整路径
