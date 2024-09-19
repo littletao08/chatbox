@@ -11,10 +11,10 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3  # 更新为 v3 版本
 
     - name: Set up Node.js
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v3  # 更新为 v3 版本
       with:
         node-version: '16'  # 设置 Node.js 版本
 
@@ -35,7 +35,7 @@ jobs:
       run: npm run package:all
 
     - name: Upload Package Artifacts
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3  # 更新为 v3 版本
       with:
         name: package-artifacts
         path: ./dist  # 根据你的项目结构调整路径
