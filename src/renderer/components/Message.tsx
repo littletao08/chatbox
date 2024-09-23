@@ -90,7 +90,7 @@ export default function Message(props: Props) {
         } else if (dateFns.isThisYear(date)) {
             messageTimestamp = dateFns.format(date, 'MM-dd HH:mm')
         } else {
-            messageTimestamp = dateFns.format(date, 'yyyy-MM-dd HH:mm')
+            messageTimestamp = dateFns.format(date, 'yyyy-MM-dd HH:mm:ss')
         }
 
         tips.push('time: ' + messageTimestamp)
