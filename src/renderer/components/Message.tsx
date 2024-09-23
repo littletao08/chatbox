@@ -86,9 +86,9 @@ export default function Message(props: Props) {
         let date = new Date(msg.timestamp)
         let messageTimestamp: string
         if (dateFns.isToday(date)) {
-            messageTimestamp = dateFns.format(date, 'HH:mm')
+            messageTimestamp = dateFns.format(date, 'HH:mm:ss')
         } else if (dateFns.isThisYear(date)) {
-            messageTimestamp = dateFns.format(date, 'MM-dd HH:mm')
+            messageTimestamp = dateFns.format(date, 'MM-dd HH:mm:ss')
         } else {
             messageTimestamp = dateFns.format(date, 'yyyy-MM-dd HH:mm:ss')
         }
