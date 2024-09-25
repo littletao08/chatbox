@@ -255,11 +255,21 @@ export type Model = keyof typeof openaiModelConfigs
 export const models = Array.from(Object.keys(openaiModelConfigs)).sort() as Model[]
 
 export async function populateGPTMessage(rawMessages: Message[]): Promise<OpenAIMessage[]> {
-    const messages: OpenAIMessage[] = rawMessages.map((m) => ({
+   const messages: OpenAIMessage[] = rawMessages.slice(0, -1).map((m) => ({
         role: m.role,
         content: m.content,
-    }))
-    return messages
+    }));
+
+    // 保留最后一条消息
+    if (rawMessages.length > 0) {
+        const lastMessage = rawMessages[rawMessages.length - 1];
+        messages.push({
+            role: lastMessage.role,
+            content: lastMessage.content,
+        });
+    }
+
+    return messages;
 }
 
 export async function populateO1Message(rawMessages: Message[]): Promise<OpenAIMessage[]> {
